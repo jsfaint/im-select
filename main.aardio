@@ -1,0 +1,27 @@
+import console;
+import key.ime;
+
+var en = 'en'
+var cn = 'cn'
+
+if (!#_ARGV) {
+	var openState = key.ime.state();
+
+	if (openState) {
+		console.stdout.write(cn);
+	} else {
+		console.stdout.write(en);
+	}
+} else {
+	var locale = _ARGV[1];
+
+	if (string.find(locale, en)) {
+		//切换为英文
+		key.ime.setOpenStatus(false);
+		key.ime.setConversionMode(0);
+	} else {
+		//切换为中文
+		key.ime.setOpenStatus(true);
+		key.ime.setConversionMode(1|0x400);
+	}
+}
